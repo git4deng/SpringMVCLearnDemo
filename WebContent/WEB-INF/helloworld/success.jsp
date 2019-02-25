@@ -8,5 +8,12 @@
 </head>
 <body>
 	<h4>SUCCESS PAGE!</h4>
+	time:${ requestScope.time }<br>
+	names:${ requestScope.names }<br>
+	email:${ requestScope.email }<br>
+	request user:${ requestScope.user }<br>
+	session user:${ sessionScope.user }<br>
+	request school:${ requestScope.school }<br>
+	session school:${ sessionScope.school }<br>
 </body>
 </html>

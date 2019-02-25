@@ -7,6 +7,59 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="hello">HELLO</a>
+	<!--helloworld验证 -->
+	<a href="hello">HELLO</a><br>
+	<!--requestMapping注解验证-->
+	<a href="springmvc/testRequestMapping">RequestMappingTest</a><br>
+	<!--requestMapping注解method方法参数验证-->
+	<form action="springmvc/testMethod" method="post">
+		<input type="submit" value="POST提交">
+	</form><br>
+	<!--参数和headers精确映射测试-->
+	<a href="springmvc/testParamsAndHeader?username=david&age=20">参数映射</a><br>
+	<!-- Ant 风格资源地址 -->
+	<a href="springmvc/testAntUrl/xxx/abc">ant风格的Path</a><br>
+	<!--@PathVariable 映射 URL 绑定的占位符  -->
+	<a href="springmvc/testPathVariable/2">支持占位符</a><br>
+	
+	
+	<!--HiddenHttpMethodFilter过滤器验证  -->
+	<a href="springmvc/testRest/1">Test Rest GET</a><br>
+	<form action="springmvc/testRest" method="post">
+		<input type="submit" value="Test Rest POST">
+	</form>
+	<br>
+	<form action="springmvc/testRest/1" method="post">
+		<input type="hidden" name="_method" value="DELETE">
+	 	<input type="submit" value="Test Rest DELETE">
+	</form>
+	<br>
+	<form action="springmvc/testRest/1" method="post">
+		<input type="hidden" name="_method" value="PUT">
+	 	<input type="submit" value="Test Rest PUT">
+	</form>
+	<br>
+	<!--验证RequestParam 获取请求参数 -->
+	<a href="springmvc/testRequestParam?username=david&age=20">获取请求参数</a><br>
+	<!--验证RequestHeader 获取请求参数 -->
+	<a href="springmvc/testRequestHeader">获取RequestHeader请求参数</a><br>
+	<!--验证CookieValue 获取请求参数 -->
+	<a href="springmvc/testCookieValue">获取CookieValue</a><br>
+	
+	<!--Spring MVC 会按请求参数名和 POJO 属性名进行自动匹配，自动为该对象填充属性值。支持级联属性-->
+	<form action="springmvc/testPojo" method="post">
+		username:<input type="text" name="username"><br>
+		password:<input type="password" name="password"><br>
+		email:<input type="text" name="email"><br>
+		age:<input type="text" name="age"><br>
+		province:<input type="text" name="address.province"><br>
+		city:<input type="text" name="address.city"><br>
+		<input type="submit" value="testPojo">
+	</form><br>
+	<a href="springmvc/testServletAPI">testServletAPI</a><br>
+	<a href="springmvc/testModelAndView">testModelAndView</a><br>
+	<a href="springmvc/testMap">testMap</a><br>
+	
+	<a href="springmvc/testSessionAttributes">testSessionAttributes</a><br>
 </body>
 </html>
