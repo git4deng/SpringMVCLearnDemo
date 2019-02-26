@@ -61,5 +61,23 @@
 	<a href="springmvc/testMap">testMap</a><br>
 	
 	<a href="springmvc/testSessionAttributes">testSessionAttributes</a><br>
+	
+	<!--
+	模拟修改操作：
+	1.原始数据：1,david,123456,xxx@xxx.com,20
+	2. 密码不能被修改
+	3.表单回显模拟操作直接在表单填写对应的属性值
+	-->
+	<form action="springmvc/testModelAtrribute" method="post">
+		<input type="hidden" name="id" value="1"><br>
+		username:<input type="text" name="username" value="david"><br>
+		<!-- password:<input type="password" name="password" value="123456"><br> -->
+		email:<input type="text" name="email" value="xxx@xxx.com"><br>
+		age:<input type="text" name="age" value="20"><br>
+		<input type="submit" value="testModelAtrribute update">
+	</form><br>
+	<a href="springmvc/testViewAndViewResolver">testViewAndViewResolver</a><br>
+	<a href="springmvc/testView">testView</a><br>
+	<a href="springmvc/testRedirect">Test Redirect</a>
 </body>
 </html>
