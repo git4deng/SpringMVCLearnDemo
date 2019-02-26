@@ -20,10 +20,11 @@
 		<!--实际上也可以不通过contextConfigLocation来配置springmvc的配置文件，而使用默认的
 		默认的配置文件为/WEB-INF/<servlet-name>-servlet.xml,此处即：springDispatcherServlet-servlet.xml
 		-->
-		<!-- <init-param>
+		<!--helloworld部分采用上面的方式配置，restful知识点使用如下方式配置-->
+		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:application-springmvc.xml</param-value>
-		</init-param> -->
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	

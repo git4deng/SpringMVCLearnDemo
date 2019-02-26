@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>index page</title>
 </head>
 <body>
-<h1>redirect page!</h1>
+
+	<a href="emps">获取所有员工信息列表</a>
 </body>
 </html>
