@@ -30,6 +30,16 @@
 	<!-- 可以直接相应转发的页面, 而无需再经过 Handler 的方法.  -->
 	<mvc:view-controller path="/success" view-name="success"/>
 	<!-- 在实际开发中通常都需配置 mvc:annotation-driven 标签 -->
-	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+	
+	<!--配置ConversionService-->
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<!--这个employeeConverter bean通过注解加入容器的-->
+				<ref bean="employeeConverter"/>
+			</set>
+		</property>
+	</bean>
 	
 </beans>
