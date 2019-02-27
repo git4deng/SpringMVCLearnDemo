@@ -36,6 +36,8 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	<br><br>
+	<a href="emp">新增员工</a>
 	
 </body>
 </html>
