@@ -3,6 +3,8 @@ package com.david.springmvc.restful.handlers;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -47,19 +49,26 @@ public class EmployeeHandler {
 	/**
 	 * 添加操作
 	 * 格式化转换出错信息都保存在BindingResult对象中
+	 * 在目标方法 bean 类型的前面添加 @Valid 注解启用数据校验
 	 * @param emp
 	 * @return
 	 */
+	
 	@RequestMapping(value="/emp",method=RequestMethod.POST)
-	public String addEmployee(Employee emp,BindingResult results){
+	public String addEmployee(@Valid Employee emp,BindingResult results,Map<String,Object> map){
 		System.out.println(emp);
 		if(results.getErrorCount()>0){
 			System.out.println("出错了！");
+			List<FieldError> fieldErrors = results.getFieldErrors();
+			for(FieldError e:fieldErrors){
+				System.out.println(e.getField()+":"+e.getDefaultMessage());
+			}
+			map.put("depts", departmentDao.getDepartments());
+			//map.put("employee", new Employee());
+			//若验证出错了，则转向定制的页面
+			return "input";
 		}
-		List<FieldError> fieldErrors = results.getFieldErrors();
-		for(FieldError e:fieldErrors){
-			System.out.println(e.getField()+":"+e.getDefaultMessage());
-		}
+		
 		employeeDao.save(emp);
 		//重定向到列表也面
 		return "redirect:/emps";

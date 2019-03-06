@@ -13,10 +13,16 @@ import org.springframework.validation.BindingResult;
 public class Employee {
 
 	private Integer id;
+	/**
+	 * JSR303标准，注解@NotEmpty表示该参数不能为空
+	 */
 	@NotEmpty
 	private String lastName;
-
-	@Email
+	
+	/**
+	 * @Email 表示邮件地址格式验证
+	 */
+	@Email 
 	private String email;
 	//1 male, 0 female
 	private Integer gender;
@@ -24,8 +30,9 @@ public class Employee {
 	private Department department;
 	/**
 	 * 日期格式转换，例如直接输入 1990-1-1，如果未按照此格式输入则会报错，后台可以通过BindingResult对象获取报错信息
+	 * @Past 表示当前系统时间之前的时间
 	 */
-	@Past
+	@Past 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birth;
 	/**

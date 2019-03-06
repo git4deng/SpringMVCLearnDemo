@@ -20,9 +20,14 @@
 		如果该属性值也不存在，则会发生错误。
 	-->
 	<form:form action="${pageContext.request.contextPath }/emp" method="POST" modelAttribute="employee">
-		<!--path 对应html的form标签的name属性  -->
+		<%-- *表示所有的错误信息都显示在这里 --%>
+		<form:errors path="*"></form:errors><br>
+		
+		<%--path 对应html的form标签的name属性 --%>
 		<c:if test="${employee.id==null }">
 			LastName:<form:input path="lastName"/><br>
+			<%--放在对应的字段位置，path等于字段name属性，直接显示对应的错误信息--%>
+			<form:errors path="lastName"></form:errors><br>
 		</c:if>
 		<c:if test="${employee.id!=null }">
 			<form:hidden path="id"/>
@@ -33,6 +38,7 @@
 		</c:if>
 		
 		Email:<form:input path="email"/><br>
+		<form:errors path="email"></form:errors><br>
 		<%
 			Map<String,String> genders=new HashMap<String,String>();
 			genders.put("1", "男");
@@ -56,6 +62,7 @@
 			3). 错误消息 ? 如何显示, 如何把错误消息进行国际化
 		-->
 		Birth:<form:input path="birth"/><br>
+		<form:errors path="birth"></form:errors><br>
 		salary:<form:input path="salary"/><br>
 		<input type="submit" value="提交">
 	</form:form>

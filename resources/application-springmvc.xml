@@ -27,7 +27,7 @@
 		class="org.springframework.context.support.ConversionServiceFactoryBean"
 		> -->
 		<!--org.springframework.format.support.FormattingConversionServiceFactoryBean
-		使用这个class既可以使用@DateTimeFormat注解的格式转换，也可以使用自定义的格式转换器-->
+		使用这个class既可以使用@DateTimeFormat注解的格式转换，也可以使用自定义的类型转换器-->
 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean"
 		>	
