@@ -1,9 +1,12 @@
 package com.david.springmvc.restful.handlers;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,12 +46,20 @@ public class EmployeeHandler {
 	}
 	/**
 	 * 添加操作
+	 * 格式化转换出错信息都保存在BindingResult对象中
 	 * @param emp
 	 * @return
 	 */
 	@RequestMapping(value="/emp",method=RequestMethod.POST)
-	public String addEmployee(Employee emp){
+	public String addEmployee(Employee emp,BindingResult results){
 		System.out.println(emp);
+		if(results.getErrorCount()>0){
+			System.out.println("出错了！");
+		}
+		List<FieldError> fieldErrors = results.getFieldErrors();
+		for(FieldError e:fieldErrors){
+			System.out.println(e.getField()+":"+e.getDefaultMessage());
+		}
 		employeeDao.save(emp);
 		//重定向到列表也面
 		return "redirect:/emps";

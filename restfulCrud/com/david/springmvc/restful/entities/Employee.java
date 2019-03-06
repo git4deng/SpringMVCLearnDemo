@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
+import org.springframework.validation.BindingResult;
 
 public class Employee {
 
@@ -21,11 +22,15 @@ public class Employee {
 	private Integer gender;
 	
 	private Department department;
-	
+	/**
+	 * 日期格式转换，例如直接输入 1990-1-1，如果未按照此格式输入则会报错，后台可以通过BindingResult对象获取报错信息
+	 */
 	@Past
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birth;
-	
+	/**
+	 * 数字的转换格式
+	 */
 	@NumberFormat(pattern="#,###,###.#")
 	private Float salary;
 
@@ -87,9 +92,8 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", lastName=" + lastName + ", email="
-				+ email + ", gender=" + gender + ", department=" + department
-				+ ", birth=" + birth + ", salary=" + salary + "]";
+		return "Employee [id=" + id + ", lastName=" + lastName + ", email=" + email + ", gender=" + gender
+				+ ", department=" + department + ", birth=" + birth + ", salary=" + salary + "]";
 	}
 
 	public Employee(Integer id, String lastName, String email, Integer gender,

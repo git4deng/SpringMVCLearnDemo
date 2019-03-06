@@ -20,10 +20,17 @@
 		DispatcherServlet 继续处理 -->
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
-
-	<!--配置ConversionService -->
+<!--conversion-service="conversionService"-->
+	
+	<!--配置ConversionService   -->
+	<!-- <bean id="conversionService"
+		class="org.springframework.context.support.ConversionServiceFactoryBean"
+		> -->
+		<!--org.springframework.format.support.FormattingConversionServiceFactoryBean
+		使用这个class既可以使用@DateTimeFormat注解的格式转换，也可以使用自定义的格式转换器-->
 	<bean id="conversionService"
-		class="org.springframework.context.support.ConversionServiceFactoryBean">
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean"
+		>	
 		<property name="converters">
 			<set>
 				<!--这个employeeConverter bean通过注解加入容器的 -->
