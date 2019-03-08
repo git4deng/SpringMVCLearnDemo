@@ -10,6 +10,12 @@
 
 	<a href="emps">获取所有员工信息列表</a><br>
 	
-	<a href="testJson">验证返回json字符串</a>
+	<a href="testJson">验证返回json字符串</a><br>
+	<form action="testHttpMessageConverter" method="post" enctype="multipart/form-data">
+		File:<input type="file" name="file"><br>
+		Desc:<input type="text" name="desc"><br>
+		<input type="submit" value="submit"><br>
+	</form>
+	<a href="testResponseEntity">ResponseEntity制作文件下载</a><br>
 </body>
 </html>
