@@ -13,24 +13,26 @@
 		<property name="prefix" value="/WEB-INF/restful/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-
+	<!--配置国际化资源文件 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="i18n"></property>
+	</bean>
 	<!--springMVC处理静态资源的方式 -->
 	<!-- <mvc:default-servlet-handler/> 将在 SpringMVC 上下文中定义一个 DefaultServletHttpRequestHandler，它会对进入 
 		DispatcherServlet 的 请求进行筛查，如果发现是没有经过映射的请求，就将该请求交由 WEB 应用服务器默认的 Servlet 处理，如果不是静态资源的请求，才由 
 		DispatcherServlet 继续处理 -->
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
-<!--conversion-service="conversionService"-->
-	
-	<!--配置ConversionService   -->
-	<!-- <bean id="conversionService"
-		class="org.springframework.context.support.ConversionServiceFactoryBean"
+	<!--conversion-service="conversionService" -->
+
+	<!--配置ConversionService -->
+	<!-- <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean" 
 		> -->
-		<!--org.springframework.format.support.FormattingConversionServiceFactoryBean
-		使用这个class既可以使用@DateTimeFormat注解的格式转换，也可以使用自定义的类型转换器-->
+	<!--org.springframework.format.support.FormattingConversionServiceFactoryBean 
+		使用这个class既可以使用@DateTimeFormat注解的格式转换，也可以使用自定义的类型转换器 -->
 	<bean id="conversionService"
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean"
-		>	
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
 				<!--这个employeeConverter bean通过注解加入容器的 -->

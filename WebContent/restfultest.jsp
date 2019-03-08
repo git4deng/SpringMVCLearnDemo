@@ -8,6 +8,8 @@
 </head>
 <body>
 
-	<a href="emps">获取所有员工信息列表</a>
+	<a href="emps">获取所有员工信息列表</a><br>
+	
+	<a href="testJson">验证返回json字符串</a>
 </body>
 </html>

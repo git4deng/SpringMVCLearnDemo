@@ -1,5 +1,6 @@
 package com.david.springmvc.restful.handlers;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.david.springmvc.restful.dao.DepartmentDao;
 import com.david.springmvc.restful.dao.EmployeeDao;
@@ -48,12 +50,23 @@ public class EmployeeHandler {
 	}
 	/**
 	 * 添加操作
-	 * 格式化转换出错信息都保存在BindingResult对象中
-	 * 在目标方法 bean 类型的前面添加 @Valid 注解启用数据校验
+	 * 1.格式化转换出错信息都保存在BindingResult对象中
+	 * 2.在目标方法 bean 类型的前面添加 @Valid 注解启用数据校验
+	 * 3.提示消息的国际化
+	 * 当一个属性校验失败后，校验框架会为该属性生成 4 个消息代码，这些代码以校验注解类名为前缀，结合modleAttribute、属性名及属性类型名生成多
+	 * 个对应的消息代码：例如 User 类中的 password 属性标准了一个 @Pattern 注解，当该属性值不满足 @Pattern 所定义的规则时, 就会产生以
+	 * 下 4个错误代码：
+	 * 	Pattern.user.password
+	 * 	Pattern.password
+	 * 	Pattern.java.lang.String
+	 * 	Pattern
+	 * 详情见国际化配置文件：
+	 * NotEmpty.employee.lastName=^^lastName\u4E0D\u80FD\u4E3A\u7A7A\u3002
+	 * Email.employee.email=\u90AE\u7BB1\u5730\u5740\u4E0D\u80FD\u4E3A\u7A7A\u54DF\u3002
+	 * Past.employee.birth=\u751F\u65E5\u5FC5\u987B\u5C0F\u4E8E\u5F53\u524D\u7CFB\u7EDF\u65F6\u95F4\u3002
 	 * @param emp
 	 * @return
 	 */
-	
 	@RequestMapping(value="/emp",method=RequestMethod.POST)
 	public String addEmployee(@Valid Employee emp,BindingResult results,Map<String,Object> map){
 		System.out.println(emp);
@@ -116,5 +129,14 @@ public class EmployeeHandler {
 		if(id!=null){
 			map.put("employee",employeeDao.get(id));
 		}
+	}
+	/**
+	 * @ResponseBody 返回json字符串
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/testJson")
+	public Collection<Employee> testJson(){
+		return employeeDao.getAll();
 	}
 }
