@@ -5,13 +5,16 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.spi.ResourceBundleControlProvider;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +35,8 @@ import com.david.springmvc.restful.entities.Employee;
 
 @Controller
 public class EmployeeHandler {
+	@Autowired
+	private ResourceBundleMessageSource messageSource;
 	@Autowired
 	private EmployeeDao employeeDao;
 	@Autowired
@@ -154,7 +159,7 @@ public class EmployeeHandler {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping
+	@RequestMapping("testHttpMessageConverter")
 	public String testHttpMessageConverter(@RequestBody String body){
 		
 		System.out.println("body:"+body);
@@ -177,5 +182,11 @@ public class EmployeeHandler {
 		HttpStatus statusCode=HttpStatus.OK;
 		ResponseEntity<byte[]> response=new ResponseEntity<byte[]>(body, headers,statusCode);
 		return response; 
+	}
+	@RequestMapping("i18n")
+	public String testI18n(Locale locale){
+		String val = messageSource.getMessage("i18n.username",null,locale);
+		System.out.println(val);
+		return "i18n";
 	}
 }

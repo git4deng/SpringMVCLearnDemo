@@ -13,11 +13,14 @@
 		<property name="prefix" value="/WEB-INF/restful/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	
 	<!--配置国际化资源文件 -->
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="i18n"></property>
 	</bean>
+	<!-- <mvc:view-controller path="/i18n" view-name="i18n"/> -->
+	<mvc:view-controller path="/i18n2" view-name="i18n2"/>
 	<!--springMVC处理静态资源的方式 -->
 	<!-- <mvc:default-servlet-handler/> 将在 SpringMVC 上下文中定义一个 DefaultServletHttpRequestHandler，它会对进入 
 		DispatcherServlet 的 请求进行筛查，如果发现是没有经过映射的请求，就将该请求交由 WEB 应用服务器默认的 Servlet 处理，如果不是静态资源的请求，才由 
@@ -40,4 +43,12 @@
 			</set>
 		</property>
 	</bean>
+	
+	<!--一下2个是配置通过超链接的方式切换国际化资源-->
+	<!--配置SessionLocaleResolver-->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
+	<!-- 配置localeChangeInterceptor -->
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"></bean>
+	</mvc:interceptors>
 </beans>

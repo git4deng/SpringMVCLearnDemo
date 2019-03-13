@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.david.springmvc.restful.entities.Department;
 import com.david.springmvc.restful.entities.Employee;
-@Component
+@Component("employeeConverter")
 public class EmployeeConverter implements Converter<String, Employee> {
 
 	public Employee convert(String source) {
