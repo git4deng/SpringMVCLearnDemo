@@ -49,6 +49,20 @@
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
 	<!-- 配置localeChangeInterceptor -->
 	<mvc:interceptors>
+		<!--配置自定义的拦截器-->
+		<bean class="com.david.springmvc.interceptor.FirstInterceptor"></bean>
+		<!--配置拦截器作用的请求路径
+			<mvc:mapping path="/emps"/> 只包含
+			<mvc:exclude-mapping path=""/> 不包含
+		-->
+		<mvc:interceptor>
+			
+			<mvc:mapping path="/emps"/>
+			<bean class="com.david.springmvc.interceptor.SecondInterceptor">
+				
+			</bean>
+		</mvc:interceptor>
+		
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"></bean>
 	</mvc:interceptors>
 	
