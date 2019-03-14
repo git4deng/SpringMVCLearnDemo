@@ -7,9 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!--单个文件上传-->
+	<h3>单个文件上传</h3>
 	<form action="testFileUpload" method="post" enctype="multipart/form-data">
 		File:<input type="file" name="file"><br>
 		Desc:<input type="text" name="desc"><br>
+		<input type="submit" value="submit"><br>
+	</form>
+	<h3>批量文件上传</h3>
+	<form action="testPatchFileUpload" method="post" enctype="multipart/form-data">
+		File1:<input type="file" name="files"><br>
+		File2:<input type="file" name="files"><br>
+		File3:<input type="file" name="files"><br>
+		File4:<input type="file" name="files"><br>
+		Desc:<input type="text" name="desc"><br>
+		
 		<input type="submit" value="submit"><br>
 	</form>
 </body>

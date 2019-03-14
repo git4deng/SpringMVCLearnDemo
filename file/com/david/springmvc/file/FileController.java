@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -71,6 +73,43 @@ public class FileController {
         return response;
 	}
 	
-	
+	@RequestMapping("/testPatchFileUpload")
+	public String testPatchFileUpload(@RequestParam("desc") String desc,@RequestParam("files") MultipartFile[] files,Map<String,Object> map) throws IOException{
+		
+		List<String> paths=new ArrayList<String>();
+		List<String> names=new ArrayList<String>();
+		for(MultipartFile file :files){
+			
+			String fileRealName = file.getOriginalFilename();
+			
+			System.out.println("desc:"+desc);
+			System.out.println("OriginalFilename:"+fileRealName);
+			//验证文件存储路径是否存在
+			File f=new File(FILE_PATH);
+			if(!f.exists()){
+				//如果不存在，则创建一个目录
+				f.mkdir();
+			}
+			String prefix=UUID.randomUUID().toString();
+			prefix=prefix.replace("-", "");
+			String fileName=prefix+"_"+fileRealName;//使用UUID作为前缀防止文件名重复而导致文件被覆盖
+			InputStream in = file.getInputStream();
+			//获取输出流
+			OutputStream out=new FileOutputStream(new File(FILE_PATH+"\\"+fileName));//指定输出流的位置;
+			byte []buffer =new byte[1024];
+			 int len=0;
+	        while((len=in.read(buffer))!=-1){
+	            out.write(buffer, 0, len);
+	            out.flush();                
+	        }                             
+	        out.close();
+	        in.close();
+	        paths.add(FILE_PATH+"\\"+fileName);
+	        names.add(fileRealName);
+		}
+        map.put("paths", FILE_PATH+"\\"+paths);
+        map.put("filenames",names);
+		return "success";
+	}
 	
 }
