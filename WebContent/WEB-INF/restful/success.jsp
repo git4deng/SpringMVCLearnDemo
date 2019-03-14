@@ -8,5 +8,9 @@
 </head>
 <body>
 <h4>上传成功！</h4>
+	文件名字：${filename }<br>
+	文件存储路径：${path }
+	请点击<a href="filedownload?path=${path }&fileName=${filename }">${filename }</a>下载！
+
 </body>
 </html>
