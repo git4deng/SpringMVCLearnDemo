@@ -8,14 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h4>上传成功！</h4>
+
 	<c:if test="${!empty path }">
+	<h4>上传成功！</h4>
 		文件名字：${filename }<br>
 		文件存储路径：${path }<br>
 		请点击<a href="filedownload?path=${path }&fileName=${filename }">${filename }</a>下载！
 	</c:if>
 	
 	<c:if test="${ !empty filenames }">
+	<h4>上传成功！</h4>
 		<c:forEach items="${requestScope.filenames }" var="name">
 		文件名字：${name}<br>
 		</c:forEach>

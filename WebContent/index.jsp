@@ -79,5 +79,10 @@
 	<a href="springmvc/testViewAndViewResolver">testViewAndViewResolver</a><br>
 	<a href="springmvc/testView">testView</a><br>
 	<a href="springmvc/testRedirect">Test Redirect</a>
+	
+	
+	<a href="testExceptionHandlerExcption?i=10">异常处理验证</a>
+	
+	<a href="testResponseStatusExceptionResolver?i=13">异常处理验证</a>
 </body>
 </html>
